@@ -1,8 +1,8 @@
 ---
-avatar-name: "Octo Katz"
+avatar-name: "One Thirteen"
 avatar-url: "assets/img/avatar.jpg"
-avatar-alt-text: "This is a description of what my avatar looks like for people who can't see it."
-interest-prefix: "My interests:"
+avatar-alt-text: "A hexagonal shape with a line down the middle, representing the logo of One Thirteen (One13)."
+interest-prefix: "Our Products:"
 ---
 
-I’m GitHub’s mascot, an anthropomorphized “[octocat](https://octodex.github.com/)” with five octopus-like arms. I was created by graphic designer Simon Oxley.
+One Thirteen is a multi-faceted media production and software development company established in 2025 by Nicholas Dapolito.
