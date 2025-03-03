@@ -1,6 +1,142 @@
-/* Add CSS rules to override Primer */
+/* Enhanced Custom CSS for One Thirteen bio site */
 
-svg {
-    width: 1.25em;
-    height: 1.25em;
+/* Modern color scheme */
+:root {
+  --brand-primary: #113;  /* One Thirteen theme color */
+  --brand-secondary: #335;
+  --accent-color: #f8a510;
+  --text-color: #333;
+  --background-color: #f8f9fa;
+  --card-background: #fff;
+  --link-hover: #0056b3;
+}
+
+/* Dark mode variables */
+[data-color-mode="dark"] {
+  --brand-primary: #335;
+  --brand-secondary: #557;
+  --accent-color: #f8a510;
+  --text-color: #eee;
+  --background-color: #222;
+  --card-background: #333;
+  --link-hover: #6495ed;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease;
+}
+
+/* Enhanced profile header */
+header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Styled links */
+.Link--primary {
+  background-color: var(--card-background);
+  border: 2px solid transparent !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+  padding: 1.2rem !important;
+}
+
+.Link--primary:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color) !important;
+}
+
+.Link--primary svg {
+  margin-bottom: 8px;
+  width: 24px;
+  height: 24px;
+  color: var(--accent-color);
+}
+
+/* Interest tags */
+.Label {
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-right: 8px;
+  font-weight: 500;
+  background-color: var(--brand-primary) !important;
+  color: white !important;
+  transition: all 0.3s ease;
+}
+
+.Label:hover {
+  background-color: var(--brand-secondary) !important;
+  transform: translateY(-2px);
+}
+
+/* Footer styling */
+footer {
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Container styling */
+.container-md {
+  max-width: 800px;
+  padding: 2rem;
+  background-color: var(--card-background);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Enhanced media queries for responsive design */
+@media (max-width: 768px) {
+  .container-md {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .Label {
+    margin-bottom: 0.5rem;
+    display: inline-block;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-in;
 }
