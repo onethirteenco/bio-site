@@ -1,6 +1,6 @@
 ---
 avatar-name: "One Thirteen"
-avatar-url: "assets/img/avatar.jpg"
+avatar-url: "assets/img/onethirteen-large.png"
 avatar-alt-text: "A hexagonal shape with a line down the middle, representing the logo of One Thirteen (One13)."
 interest-prefix: "Our Products:"
 ---

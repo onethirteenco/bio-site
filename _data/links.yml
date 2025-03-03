@@ -1,8 +1,11 @@
 - text: Official Website
   url: https://www.onethirteen.co/
   icon: globe2
-- text: Instagram
-  url: https://www.instagram.com/
+- text: Instagram (One13)
+  url: https://www.instagram.com/onethirteenco
+  icon: instagram
+- text: Instagram (Sparrow Films)
+  url: https://www.instagram.com/sparrowfilms/
   icon: instagram
 - text: BlueSky
   url: https://bsky.app/profile/onethirteen.co
