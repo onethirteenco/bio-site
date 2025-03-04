@@ -1,57 +1,65 @@
-# Link in bio template
-Template for creating a simple “link in bio” site using [GitHub Pages](https://pages.github.com/).
+# Modern Bio Site
 
-<img width="1032" alt="linkinbio-template-screenshot" src="https://user-images.githubusercontent.com/5177337/227823745-ffb6acf3-fd3d-422f-b118-58ec50a72143.png">
+A sleek, responsive personal bio site built with modern web technologies. This site serves as a central hub for your online presence, featuring a clean design, dark mode support, and an intuitive mobile-first layout.
 
-## Getting started
+## Features
 
-### Copying the template and setting up publishing
-1. Press the `Use this template` button on the `Code` tab and select `Create a new repository`.
-1. Go to the `Settings` tab and then go to the `Pages` settings.
-1. Set the source branch to `main` and press `Save`.
+- 🎨 **Modern Design** - Clean, minimalist interface with attention to typography and spacing
+- 🌓 **Dark Mode** - Automatic dark mode support with smooth transitions
+- 📱 **Fully Responsive** - Optimized for all devices from mobile to desktop
+- 🔗 **Smart Link Cards** - Beautiful link cards with hover effects and icon support
+- 🎯 **Product Showcase** - Horizontal scrolling product display on desktop, vertical stack on mobile
+- 🏷️ **Interest Tags** - Visually appealing tags to showcase your interests and skills
+- ⚡ **Performance Optimized** - Fast loading with minimal dependencies
+- 🔒 **Secure** - HTTPS enabled with GitHub Pages
 
-You'll see a URL show up, but the site takes a few minutes before it's actually live.
+## Technology Stack
 
-## Swapping out your content
+- HTML5 & CSS3
+- CSS Custom Properties for theming
+- Flexbox & CSS Grid for layouts
+- GitHub Pages for hosting
+- Custom animations and transitions
+- Mobile-first responsive design
 
-This is the content you'll want to update with your info:
+## Local Development
 
-1. Name and profile blurb
-1. Avatar image and alt text
-1. Links
-1. Interests (Optional)
-1. Metadata
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/bio-site.git
+   cd bio-site
+   ```
 
-### Name and profile blurb
+2. If you're using Visual Studio Code, install the Live Server extension to preview the site locally.
 
-- Open `index.md` and change the `avatar-name` setting to your name.
-- Use the content area to write your profile blurb. Use GitHub-flavored Markdown for formatting.
+3. Make your changes and test them locally before pushing to GitHub.
 
-### Avatar image and alt text
+## Customization
 
-- If you don't have an existing image online to use, upload one and copy the URL.
-  - Go to the `assets/img` folder in your repo and use the `Add file` action.
-- Open `index.md` and change `avatar-url` to the url of your image.
-  - For example, `assets/img/YOUR-FILE.jpg`
-  
-### Links
+### Modifying Styles
+- Main styles are in `assets/css/custom.css`
+- Color schemes and variables are defined in the `:root` section
+- Dark mode overrides are in the `[data-color-mode="dark"]` section
 
-- Open `_data/links.yml` and change the list of items, using the text, URL, and icon you want for each link.
-  - See [Bootstrap Icons](https://icons.getbootstrap.com/) for the names of the icons.
-  
-### Interests
+### Adding Content
+- Update profile information in the HTML
+- Modify link cards in the links section
+- Add or remove products in the showcase section
+- Customize interest tags as needed
 
-- Open `data/interests.yml` and change the list of items.
-  - Put each item on a new line preceded by a hyphen and a space (`- `).
-  - If you want to change the text preceding the interests, open `index.md` and change the `interest-prefix` setting.
+### Responsive Breakpoints
+- Desktop: > 768px
+- Tablet: 768pxJ
+- Mobile: 480px
 
-### Metadata
+## Contributing
 
-- Open `data/metadata.yml` to change the site title, description, and language information used by browsers and search engines.
+Feel free to submit issues and enhancement requests!
 
-## Credit and license
-This project was created using the [GitHub Pages gem for Jekyll](https://github.com/github/pages-gem). It is licensed under The Unlicense, which allows everything and promises nothing.
+## License
 
-Favicon is `Soft Ice Cream` from [Twemoji](https://twemoji.twitter.com/), licensed under [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Other parts of this project, including Primer CSS and Bootstrap, have their own licenses.
+---
+
+Made with ❤️ using modern web technologies
