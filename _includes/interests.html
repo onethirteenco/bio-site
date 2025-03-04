@@ -3,7 +3,7 @@
   <h2>Our Apps</h2>
   <div class="products-horizontal-container">
     {% for item in site.data.interests %}
-    <div class="product-block" data-index="{{ forloop.index0 }}">
+    <div class="product-block" data-index="{{ forloop.index0 }}" tabindex="0">
       <div class="product-block-header">
         <div class="product-icon">
           <img src="{{ item.icon }}" alt="{{ item.name }} icon" class="app-icon">
@@ -46,10 +46,22 @@
     </div>
     {% endfor %}
   </div>
-  <div class="carousel-dots">
-    {% for item in site.data.interests %}
-    <div class="carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
-    {% endfor %}
+  <div class="carousel-nav">
+    <button class="carousel-scroll-button prev" aria-label="Previous item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    </button>
+    <div class="carousel-dots">
+      {% for item in site.data.interests %}
+      <button class="carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+      {% endfor %}
+    </div>
+    <button class="carousel-scroll-button next" aria-label="Next item">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
   </div>
 </section>
 
@@ -62,24 +74,46 @@ document.addEventListener('DOMContentLoaded', function() {
   const nextButton = document.querySelector('.carousel-scroll-button.next');
   let currentIndex = 0;
   let autoRotateInterval;
+  let isAnimating = false;
 
-  function updateCarousel(index) {
+  function calculateOffset() {
     const blockWidth = blocks[0].offsetWidth;
     const gap = 24; // 1.5rem gap
     const containerWidth = container.parentElement.offsetWidth;
+    const containerPadding = 80; // Matches the CSS padding
+    
+    // Center the current item
+    const offset = (containerWidth / 2) - (blockWidth / 2) - containerPadding;
+    return { blockWidth, gap, offset };
+  }
+
+  function updateCarousel(index, smooth = true) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    const { blockWidth, gap, offset } = calculateOffset();
     const slidePosition = index * (blockWidth + gap);
     
-    // Calculate the initial offset to center the first item
-    const containerPadding = 80; // Matches the CSS padding
-    const offset = (containerWidth / 2) - (blockWidth / 2) - containerPadding;
-    
+    container.style.transition = smooth ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
     container.style.transform = `translateX(${offset - slidePosition}px)`;
     
-    // Update dots
+    // Update dots and focus
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
     
+    blocks.forEach((block, i) => {
+      block.setAttribute('aria-hidden', i !== index);
+      if (i === index) {
+        block.focus();
+      }
+    });
+    
     currentIndex = index;
+    
+    // Reset animation flag after transition
+    setTimeout(() => {
+      isAnimating = false;
+    }, 500);
   }
 
   function nextSlide() {
@@ -92,9 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCarousel(prevIndex);
   }
 
-  // Initialize auto-rotation
   function startAutoRotate() {
-    autoRotateInterval = setInterval(nextSlide, 5000); // Rotate every 5 seconds
+    autoRotateInterval = setInterval(nextSlide, 5000);
   }
 
   function stopAutoRotate() {
@@ -122,48 +155,72 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // Touch events for mobile
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      stopAutoRotate();
+      startAutoRotate();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      stopAutoRotate();
+      startAutoRotate();
+    }
+  });
+
+  // Touch events
   let touchStartX = 0;
   let touchEndX = 0;
 
   container.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
     stopAutoRotate();
-  }, false);
+    container.style.transition = 'none';
+  }, { passive: true });
+
+  container.addEventListener('touchmove', (e) => {
+    if (isAnimating) return;
+    const { offset } = calculateOffset();
+    const currentX = e.touches[0].clientX;
+    const diff = currentX - touchStartX;
+    const transform = offset - (currentIndex * (blocks[0].offsetWidth + 24)) + diff;
+    container.style.transform = `translateX(${transform}px)`;
+  }, { passive: true });
 
   container.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].clientX;
-    handleSwipe();
-    startAutoRotate();
-  }, false);
-
-  function handleSwipe() {
-    const difference = touchStartX - touchEndX;
-    if (Math.abs(difference) > 50) { // Minimum swipe distance
-      if (difference > 0) {
+    const diff = touchStartX - touchEndX;
+    
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
         nextSlide();
       } else {
         prevSlide();
       }
+    } else {
+      // Snap back if swipe wasn't far enough
+      updateCarousel(currentIndex);
     }
-  }
+    
+    startAutoRotate();
+  });
 
   // Handle window resize
   let resizeTimer;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      updateCarousel(currentIndex);
+      updateCarousel(currentIndex, false);
     }, 250);
   });
 
-  // Initial setup
-  updateCarousel(0);
-  startAutoRotate();
-
-  // Pause auto-rotation when hovering over the carousel
+  // Pause auto-rotation on hover
   container.addEventListener('mouseenter', stopAutoRotate);
   container.addEventListener('mouseleave', startAutoRotate);
+
+  // Initial setup
+  updateCarousel(0, false);
+  startAutoRotate();
 });
 </script>
 
