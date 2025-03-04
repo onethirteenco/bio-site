@@ -1,6 +1,184 @@
-<div class="mb-5 text-center">
-    <p class="color-fg-muted f4-mktg mb-2 d-inline-block">{{ page.interest-prefix }}</p>
+<!-- Products Showcase Section -->
+<section class="products-showcase">
+  <h2>Our Apps</h2>
+  <div class="products-horizontal-container">
     {% for item in site.data.interests %}
-    <span class="Label Label--secondary mb-2 f4-mktg">{{ item }}</span>
+    <div class="product-block" data-index="{{ forloop.index0 }}">
+      <div class="product-block-header">
+        <div class="product-icon">
+          <img src="{{ item.icon }}" alt="{{ item.name }} icon" class="app-icon">
+        </div>
+      </div>
+      <div class="product-block-content">
+        <h3 class="product-block-title">
+          {% if item.status %}
+            {% if item.status == "coming_soon" %}
+            <span class="status-indicator coming-soon" title="Coming Soon"></span>
+            {% else %}
+            <span class="status-indicator available" title="Available Now"></span>
+            {% endif %}
+          {% else %}
+            <span class="status-indicator coming-soon" title="Coming Soon"></span>
+          {% endif %}
+          {{ item.name }}
+        </h3>
+        <div class="product-block-details">
+          {% if item.version %}
+          <span class="version-info">{{ item.version }}</span>
+          {% endif %}
+          {% if item.platforms %}
+          <span class="version-info">{{ item.platforms }}</span>
+          {% endif %}
+        </div>
+        {% unless item.link %}
+        <div class="coming-soon-label">Coming Soon</div>
+        {% endunless %}
+        <p class="hover-description">{{ item.description }}</p>
+        {% if item.link %}
+        <a href="{{ item.link }}" class="app-store-link" target="_blank" rel="noopener noreferrer" title="View {{ item.name }} on App Store">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 0-1"/>
+            <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0z"/>
+          </svg>
+        </a>
+        {% endif %}
+      </div>
+    </div>
     {% endfor %}
+  </div>
+  <div class="carousel-nav">
+    <button class="carousel-button carousel-scroll-button prev" aria-label="Previous">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+      </svg>
+    </button>
+    <div class="carousel-dots">
+      {% for item in site.data.interests %}
+      <div class="carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
+      {% endfor %}
+    </div>
+    <button class="carousel-button carousel-scroll-button next" aria-label="Next">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.querySelector('.products-horizontal-container');
+  const blocks = document.querySelectorAll('.product-block');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevButton = document.querySelector('.carousel-scroll-button.prev');
+  const nextButton = document.querySelector('.carousel-scroll-button.next');
+  let currentIndex = 0;
+  let autoRotateInterval;
+
+  function updateCarousel(index) {
+    const blockWidth = blocks[0].offsetWidth;
+    const gap = 24; // 1.5rem gap
+    const containerWidth = container.parentElement.offsetWidth;
+    const slidePosition = index * (blockWidth + gap);
+    
+    // Calculate the initial offset to center the first item
+    const containerPadding = 80; // Matches the CSS padding
+    const offset = (containerWidth / 2) - (blockWidth / 2) - containerPadding;
+    
+    container.style.transform = `translateX(${offset - slidePosition}px)`;
+    
+    // Update dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+    
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    const nextIndex = (currentIndex + 1) % blocks.length;
+    updateCarousel(nextIndex);
+  }
+
+  function prevSlide() {
+    const prevIndex = (currentIndex - 1 + blocks.length) % blocks.length;
+    updateCarousel(prevIndex);
+  }
+
+  // Initialize auto-rotation
+  function startAutoRotate() {
+    autoRotateInterval = setInterval(nextSlide, 5000); // Rotate every 5 seconds
+  }
+
+  function stopAutoRotate() {
+    clearInterval(autoRotateInterval);
+  }
+
+  // Event listeners
+  prevButton.addEventListener('click', () => {
+    prevSlide();
+    stopAutoRotate();
+    startAutoRotate();
+  });
+
+  nextButton.addEventListener('click', () => {
+    nextSlide();
+    stopAutoRotate();
+    startAutoRotate();
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      updateCarousel(index);
+      stopAutoRotate();
+      startAutoRotate();
+    });
+  });
+
+  // Touch events for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    stopAutoRotate();
+  }, false);
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+    startAutoRotate();
+  }, false);
+
+  function handleSwipe() {
+    const difference = touchStartX - touchEndX;
+    if (Math.abs(difference) > 50) { // Minimum swipe distance
+      if (difference > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  }
+
+  // Handle window resize
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateCarousel(currentIndex);
+    }, 250);
+  });
+
+  // Initial setup
+  updateCarousel(0);
+  startAutoRotate();
+
+  // Pause auto-rotation when hovering over the carousel
+  container.addEventListener('mouseenter', stopAutoRotate);
+  container.addEventListener('mouseleave', startAutoRotate);
+});
+</script>
+
+<div class="official-links-section mb-5">
+    <h2 class="text-center mb-4">Official Links</h2>
 </div>

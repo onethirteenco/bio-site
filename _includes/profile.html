@@ -5,13 +5,6 @@
                 src="{{ page.avatar-url }}" width="80" height="80">
         </div>
         <h1 class="mt-3 mb-3">{{ page.avatar-name }}</h1>
-        <div class="bio-text f3-mktg color-fg-muted mb-4">{{ page.content | markdownify }}</div>
-        
-        <!-- Add theme toggle button -->
-        <button onclick="toggleTheme()" class="theme-toggle btn btn-sm btn-outline" aria-label="Toggle theme">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-half" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
-            </svg>
-        </button>
+        <div class="bio-text mb-4">{{ page.content | markdownify }}</div>
     </div>
 </header>

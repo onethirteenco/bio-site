@@ -1,4 +1,16 @@
-- Bit Buddy (v2.5 - iOS/iPadOS)
-- Moneyminder (Coming Soon)
-- Sparrow Films
-- cribbo (Coming Soon)
+# Apps and Products
+- name: "Bit Buddy"
+  icon: "/assets/img/bitbuddy.jpg"
+  version: "v2.5"
+  platforms: "iOS/iPadOS"
+  status: "available"
+  description: "Device logger for creatives."
+  link: "https://apple.co/4cjQJMr"
+
+- name: "Moneyminder"
+  icon: "/assets/img/moneyminder.jpg"
+  description: "Your personal savings goal tracker."
+
+- name: "cribbo"
+  icon: "/assets/img/cribbo.jpg"
+  description: "HomeKit code and control center."
