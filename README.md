@@ -1,6 +1,8 @@
-# Modern Bio Site
+# Bio Site
 
 A sleek, responsive personal bio site built with modern web technologies. This site serves as a central hub for your online presence, featuring a clean design, dark mode support, and an intuitive mobile-first layout.
+
+<img src="./assets/img/bio-site-image.jpg" width="100%" /> 
 
 ## Features
 
@@ -64,4 +66,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Site/repo generated the from Link in Bio Starter template found [here](https://github.com/pglevy/linkinbio-template).
 
-Readme file generated with Claude.ai
+Readme file generated with Claude.ai.
