@@ -2,8 +2,8 @@
 <section class="products-showcase">
   <h2>Our Apps</h2>
   <div class="products-horizontal-container">
-    {% for item in site.data.interests %}
-    <div class="product-block" data-index="{{ forloop.index0 }}" tabindex="0">
+    {% for item in site.data.ourApps %}
+    <div class="product-block" data-index="{{ forloop.index0 }}">
       <div class="product-block-header">
         <div class="product-icon">
           <img src="{{ item.icon }}" alt="{{ item.name }} icon" class="app-icon">
@@ -22,12 +22,23 @@
           {% endif %}
           {{ item.name }}
         </h3>
+        {% if item.subtitle %}
+        <div class="product-subtitle">{{ item.subtitle }}</div>
+        {% endif %}
         <div class="product-block-details">
           {% if item.version %}
           <span class="version-info">{{ item.version }}</span>
           {% endif %}
           {% if item.platforms %}
           <span class="version-info">{{ item.platforms }}</span>
+          {% endif %}
+          {% if item.rating %}
+          <span class="rating-info">
+            <svg class="rating-star" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+            </svg>
+            {{ item.rating }}
+          </span>
           {% endif %}
         </div>
         {% unless item.link %}
@@ -53,7 +64,7 @@
       </svg>
     </button>
     <div class="carousel-dots">
-      {% for item in site.data.interests %}
+      {% for item in site.data.ourApps %}
       <button class="carousel-dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
       {% endfor %}
     </div>
@@ -97,15 +108,12 @@ document.addEventListener('DOMContentLoaded', function() {
     container.style.transition = smooth ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
     container.style.transform = `translateX(${offset - slidePosition}px)`;
     
-    // Update dots and focus
+    // Update dots
     dots.forEach(dot => dot.classList.remove('active'));
     dots[index].classList.add('active');
     
     blocks.forEach((block, i) => {
       block.setAttribute('aria-hidden', i !== index);
-      if (i === index) {
-        block.focus();
-      }
     });
     
     currentIndex = index;

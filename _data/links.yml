@@ -1,18 +1,11 @@
+# Regular Links
+# These links will appear as cards in the links section
+# Lower position values appear higher in the list
 - text: Official Website
   url: https://www.onethirteen.co/
-  icon: globe2
-- text: Instagram (One13)
-  url: https://www.instagram.com/onethirteenco
-  icon: instagram
-- text: Instagram (Sparrow Films)
-  url: https://www.instagram.com/sparrowfilms/
-  icon: instagram
-- text: BlueSky
-  url: https://bsky.app/profile/onethirteen.co
-  icon: globe2
-- text: Twitter
-  url: https://www.twitter.com/onethirteen_co
-  icon: twitter
-- text: GitHub
-  url: https://github.com/onethirteenco
-  icon: github
+  icon: onethirteen
+  position: 1
+- text: Bit Buddy Official Website
+  url: https://www.bitbuddy.co/
+  icon: bitbuddy
+  position: 4

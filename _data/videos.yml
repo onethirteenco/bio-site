@@ -1,0 +1,15 @@
+# Videos Collection
+# Add your videos here and they will appear in the links section
+# Lower position values appear higher in the list
+
+- type: youtube
+  id: A5yADpPSkIQ
+  title: "Latest Release: BREACH Teaser Trailer"
+  featured: false
+  position: 2
+
+- type: youtube
+  id: ZJpMyjFsfSc
+  title: "Watch: How to Make: The Perfect* Pizza"
+  featured: false
+  position: 3

@@ -6,10 +6,12 @@
   status: "available"
   description: "Device logger for creatives."
   link: "https://apple.co/4cjQJMr"
+  rating: 4.6
 
 - name: "Moneyminder"
   icon: "/assets/img/moneyminder.jpg"
   description: "Your personal savings goal tracker."
+  subtitle: "Named by Brynne Williams."
 
 - name: "cribbo"
   icon: "/assets/img/cribbo.jpg"

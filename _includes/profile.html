@@ -6,5 +6,6 @@
         </div>
         <h1 class="mt-3 mb-3">{{ page.avatar-name }}</h1>
         <div class="bio-text mb-4">{{ page.content | markdownify }}</div>
+        {% include social-icons.html %}
     </div>
 </header>

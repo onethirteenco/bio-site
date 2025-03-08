@@ -1,14 +1,67 @@
 <div class="links-container">
     <ul class="list-style-none f3 container-sm px-3">
+        {% assign all_links = '' | split: '' %}
+        
+        <!-- Add regular links to the combined array -->
         {% for item in site.data.links %}
-        <li class="mb-3 text-center text-semibold">
-            <a href="{{ item.url }}" class="Link--primary d-block p-3 border rounded-3 color-shadow-small" target="_blank" rel="noopener noreferrer">
-                <svg class="bi mr-1" width="24" height="24" fill="currentColor">
-                    <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#{{ item.icon | default: 'globe2' }}"/>
-                </svg>
-                <span class="link-text">{{ item.text }}</span>
-            </a>
-        </li>
+            {% assign link_item = item %}
+            {% assign link_item = link_item | merge: {'source_type': 'regular'} %}
+            {% assign link_item = link_item | merge: {'position': item.position | default: 99 } %}
+            {% assign all_links = all_links | push: link_item %}
+        {% endfor %}
+        
+        <!-- Add videos to the combined array -->
+        {% for video in site.data.videos %}
+            {% assign all_links = all_links | push: video %}
+        {% endfor %}
+        
+        <!-- Sort the combined array by position -->
+        {% assign sorted_links = all_links | sort: 'position' %}
+        
+        <!-- Display all links in order -->
+        {% for item in sorted_links %}
+            <!-- Check if this is a video item by looking for the 'type' property that only videos have -->
+            {% if item.type == 'youtube' or item.type == 'vimeo' %}
+                <li class="mb-3 text-semibold video-list-item">
+                    {% if item.featured %}
+                        <!-- Featured video with thumbnail card -->
+                        {% include video-card.html 
+                            type=item.type
+                            id=item.id
+                            title=item.title
+                            featured=item.featured
+                        %}
+                    {% else %}
+                        <!-- Compact video link -->
+                        <a href="{% if item.type == 'youtube' %}https://www.youtube.com/watch?v={{ item.id }}{% elsif item.type == 'vimeo' %}https://vimeo.com/{{ item.id }}{% endif %}" class="Link--primary d-block p-3 border rounded-3 color-shadow-small" target="_blank" rel="noopener noreferrer">
+                            <svg class="bi mr-1" width="32" height="32" fill="currentColor">
+                                <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#{{ item.type }}"/>
+                            </svg>
+                            <span class="link-text">{{ item.title }}</span>
+                        </a>
+                    {% endif %}
+                </li>
+            {% else %}
+                <!-- Regular link -->
+                <li class="mb-3 text-semibold">
+                    <a href="{{ item.url }}" class="Link--primary d-block p-3 border rounded-3 color-shadow-small" target="_blank" rel="noopener noreferrer">
+                        {% if item.icon == 'bluesky' %}
+                            <svg class="bi mr-1" width="24" height="24" fill="currentColor">
+                                <use xlink:href="{{ site.baseurl }}/assets/img/bluesky.svg#bluesky"/>
+                            </svg>
+                        {% elsif item.icon == 'onethirteen' %}
+                            <img src="{{ site.baseurl }}/assets/img/onethirteen-large.png" class="onethirteen-icon mr-1" alt="One Thirteen" width="24" height="24">
+                        {% elsif item.icon == 'bitbuddy' %}
+                            <img src="{{ site.baseurl }}/assets/img/bitbuddy.jpg" class="bitbuddy-icon mr-1" alt="Bit Buddy" width="24" height="24">
+                        {% else %}
+                            <svg class="bi mr-1" width="24" height="24" fill="currentColor">
+                                <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#{{ item.icon | default: 'globe2' }}"/>
+                            </svg>
+                        {% endif %}
+                        <span class="link-text">{{ item.text }}</span>
+                    </a>
+                </li>
+            {% endif %}
         {% endfor %}
     </ul>
 </div>

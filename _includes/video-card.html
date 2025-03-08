@@ -1,0 +1,41 @@
+{% if include.type == "youtube" %}
+<a href="https://www.youtube.com/watch?v={{ include.id }}" class="Link--primary d-block p-0 border rounded-3 color-shadow-small video-link-card" target="_blank" rel="noopener noreferrer">
+    <div class="video-thumbnail-wrapper">
+        <img 
+            src="https://img.youtube.com/vi/{{ include.id }}/mqdefault.jpg" 
+            alt="{{ include.title }}"
+            class="thumbnail-img">
+        <div class="play-overlay">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+                <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#play-circle-fill"/>
+            </svg>
+        </div>
+    </div>
+    <div class="video-info-card">
+        <svg class="bi mr-1" width="32" height="32" fill="currentColor">
+            <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#youtube"/>
+        </svg>
+        <span class="link-text">{{ include.title }}</span>
+    </div>
+</a>
+{% elsif include.type == "vimeo" %}
+<a href="https://vimeo.com/{{ include.id }}" class="Link--primary d-block p-0 border rounded-3 color-shadow-small video-link-card" target="_blank" rel="noopener noreferrer">
+    <div class="video-thumbnail-wrapper">
+        <img 
+            src="https://vumbnail.com/{{ include.id }}.jpg" 
+            alt="{{ include.title }}"
+            class="thumbnail-img">
+        <div class="play-overlay">
+            <svg class="bi" width="32" height="32" fill="currentColor">
+                <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#play-circle-fill"/>
+            </svg>
+        </div>
+    </div>
+    <div class="video-info-card">
+        <svg class="bi mr-1" width="32" height="32" fill="currentColor">
+            <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#vimeo"/>
+        </svg>
+        <span class="link-text">{{ include.title }}</span>
+    </div>
+</a>
+{% endif %} 

@@ -1,0 +1,17 @@
+<div class="social-icons-container text-center mb-4">
+    {% for item in site.data.social_links %}
+    <a href="{{ item.url }}" class="social-icon-link mx-2" target="_blank" rel="noopener noreferrer" title="{{ item.text }}">
+        <div class="social-icon-circle">
+            {% if item.icon == 'bluesky' %}
+            <svg class="bi" width="20" height="20" fill="currentColor">
+                <use xlink:href="{{ site.baseurl }}/assets/img/bluesky.svg#bluesky"/>
+            </svg>
+            {% else %}
+            <svg class="bi" width="20" height="20" fill="currentColor">
+                <use xlink:href="{{ site.baseurl }}/assets/img/bootstrap-icons.svg#{{ item.icon }}"/>
+            </svg>
+            {% endif %}
+        </div>
+    </a>
+    {% endfor %}
+</div> 

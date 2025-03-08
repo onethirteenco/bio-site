@@ -1,0 +1,20 @@
+# Social Links
+# These links will appear as icons in the profile section
+- text: Instagram (One13)
+  url: https://www.instagram.com/onethirteenco
+  icon: instagram
+- text: Twitter
+  url: https://www.twitter.com/onethirteen_co
+  icon: twitter
+- text: YouTube (Sparrow Films)
+  url: https://www.youtube.com/@sparrowfilmsco
+  icon: youtube
+- text: GitHub
+  url: https://github.com/onethirteenco
+  icon: github
+- text: BlueSky
+  url: https://bsky.app/profile/onethirteen.co
+  icon: globe2 
+- text: Email
+  url: mailto:support@onethirteen.co
+  icon: envelope

@@ -3,3 +3,19 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 .DS_Store
+# Dependency directories
+vendor/
+.bundle/
+# Log files
+*.log
+# Environment variables
+.env
+.env.*
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+# Ruby specific
+*.gem
+*.rbc
