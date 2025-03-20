@@ -1,12 +1,12 @@
 # Apps and Products
 - name: "Bit Buddy"
   icon: "/assets/img/bitbuddy.jpg"
-  version: "v2.5"
+  version: "v2.6"
   platforms: "iOS/iPadOS"
   status: "available"
   description: "Device logger for creatives."
   link: "https://apple.co/4cjQJMr"
-  rating: 4.6
+  rating: 4.8
 
 - name: "Moneyminder"
   icon: "/assets/img/moneyminder.jpg"
