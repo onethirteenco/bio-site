@@ -1198,6 +1198,9 @@ footer {
     align-items: center;
     gap: 1rem;
     margin-top: 1rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+    padding: 0 1rem;
 }
 
 .social-icon-circle {
@@ -1211,12 +1214,14 @@ footer {
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px var(--shadow-color);
+    flex-shrink: 0;
 }
 
 .social-icon-link {
     color: var(--text-color-secondary);
     text-decoration: none;
     position: relative;
+    margin: 0 0.25rem;
 }
 
 .social-icon-link:hover .social-icon-circle {
@@ -1648,6 +1653,11 @@ footer {
 
 /* Additional mobile adjustments for social icons */
 @media (max-width: 768px) {
+  .social-icons-container {
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
+  
   .social-icon-link::after {
     font-size: 0.7rem;
     padding: 3px 6px;
@@ -1666,6 +1676,22 @@ footer {
   }
   
   .social-icon-link {
-    margin: 0 0.5rem;
+    margin: 0 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-icons-container {
+    gap: 0.5rem;
+    padding: 0 0.25rem;
+  }
+  
+  .social-icon-circle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .social-icon-link {
+    margin: 0 0.125rem;
   }
 }
