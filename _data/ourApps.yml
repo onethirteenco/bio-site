@@ -1,6 +1,6 @@
 # Apps and Products
 - name: "Bit Buddy"
-  icon: "/assets/img/bitbuddy.jpg"
+  icon: "assets/img/bitbuddy.jpg"
   version: "v2.6"
   platforms: "iOS/iPadOS"
   status: "available"
@@ -8,11 +8,19 @@
   link: "https://apple.co/4cjQJMr"
   rating: 4.8
 
+- name: "Quick.Link"
+  icon: "assets/img/quicklink.jpg"
+  version: "v1.0"
+  platforms: "iOS"
+  description: "Create custom short-links for your brand."
+  link: ""
+  rating: N/A
+
 - name: "Moneyminder"
-  icon: "/assets/img/moneyminder.jpg"
+  icon: "assets/img/moneyminder.jpg"
   description: "Your personal savings goal tracker."
   subtitle: "Named by Brynne Williams."
 
 - name: "cribbo"
-  icon: "/assets/img/cribbo.jpg"
+  icon: "assets/img/cribbo.jpg"
   description: "HomeKit code and control center."

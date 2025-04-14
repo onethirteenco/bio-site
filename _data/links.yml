@@ -5,7 +5,15 @@
   url: https://www.onethirteen.co/
   icon: onethirteen
   position: 1
-- text: Bit Buddy Official Website
-  url: https://www.bitbuddy.co/
-  icon: bitbuddy
+- text: Instagram
+  url: https://www.instagram.com/onethirteenco
+  icon: instagram
+  position: 2
+- text: BlueSky
+  url: https://bsky.app/profile/onethirteen.co
+  icon: moon-fill
+  position: 3
+- text: Twitter
+  url: https://twitter.com/onethirteen_co
+  icon: twitter
   position: 4

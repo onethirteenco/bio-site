@@ -493,8 +493,8 @@ footer {
 }
 
 .product-block:hover {
-  transform: translateY(-2px) scale(1.02);
-  z-index: 1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Ensure interactive elements within product block have proper focus styles */
@@ -612,27 +612,54 @@ footer {
 
 /* Product-specific styling */
 .product-block:nth-child(1) {
-  border-color: #3490dc;
+  border-color: #2B6CB0; /* Bit Buddy blue */
 }
 
 .product-block:nth-child(1) .product-icon {
-  background: #3490dc;
+  background: #2B6CB0;
 }
 
 .product-block:nth-child(2) {
-  border-color: #38c172;
+  border-color: #38A169; /* Moneyminder green */
 }
 
 .product-block:nth-child(2) .product-icon {
-  background: #38c172;
+  background: #38A169;
 }
 
 .product-block:nth-child(3) {
-  border-color: #f6993f;
+  border-color: #805AD5; /* Cribbo purple */
 }
 
 .product-block:nth-child(3) .product-icon {
-  background: #f6993f;
+  background: #805AD5;
+}
+
+.product-block:nth-child(4) {
+  border-color: #f16842; /* Cribbo purple */
+}
+
+.product-block:nth-child(4) .product-icon {
+  background: #f16842;
+}
+
+/* Add hover effects for the product blocks */
+.product-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.product-block:nth-child(1):hover {
+  box-shadow: 0 4px 6px rgba(43, 108, 176, 0.2);
+}
+
+.product-block:nth-child(2):hover {
+  box-shadow: 0 4px 6px rgba(56, 161, 105, 0.2);
+}
+
+.product-block:nth-child(3):hover,
+.product-block:nth-child(4):hover {
+  box-shadow: 0 4px 6px rgba(128, 90, 213, 0.2);
 }
 
 .app-store-link {
